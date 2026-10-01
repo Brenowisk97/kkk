@@ -1,72 +1,1273 @@
 <!DOCTYPE html>
-
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moranguete</title>
+
+    <title>Moranguete 🍓</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* =========================
+           FUNDO
+        ========================== */
+
+        #conteudo {
+
+            width: 100vw;
+            height: 100vh;
+
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                radial-gradient(
+                    circle at 50% 35%,
+                    rgba(255,255,255,.18),
+                    transparent 32%
+                ),
+                linear-gradient(
+                    135deg,
+                    #ff8b91 0%,
+                    #f04f64 52%,
+                    #b71937 100%
+                );
+        }
+
+
+        /* =========================
+           MORANGUETE
+        ========================== */
+
+        .moranguete {
+
+            position: absolute;
+
+            left: 4vw;
+            bottom: -2vh;
+
+            height: min(76vh, 700px);
+            max-width: 31vw;
+
+            object-fit: contain;
+
+            filter:
+                drop-shadow(
+                    0 18px 20px rgba(0,0,0,.25)
+                );
+
+            z-index: 2;
+        }
+
+
+        /* =========================
+           MORANGO CORAÇÃO
+        ========================== */
+
+        .morango-coracao {
+
+            position: absolute;
+
+            right: 5vw;
+            top: 50%;
+
+            width: min(29vw, 410px);
+
+            transform: translateY(-50%);
+
+            filter:
+                drop-shadow(
+                    0 18px 25px rgba(0,0,0,.25)
+                );
+
+            animation:
+                flutuar 3s ease-in-out infinite;
+
+            z-index: 2;
+        }
+
+
+        @keyframes flutuar {
+
+            0%, 100% {
+                transform:
+                    translateY(-50%)
+                    rotate(-2deg);
+            }
+
+            50% {
+                transform:
+                    translateY(-56%)
+                    rotate(2deg);
+            }
+        }
+
+
+        /* =========================
+           CAIXA DO CONVITE
+        ========================== */
+
+        .convite {
+
+            position: relative;
+
+            z-index: 10;
+
+            width: min(520px, 86vw);
+
+            padding: 38px 34px 34px;
+
+            text-align: center;
+
+            background:
+                rgba(255,255,255,.92);
+
+            border:
+                1px solid rgba(255,255,255,.75);
+
+            border-radius: 28px;
+
+            box-shadow:
+                0 28px 70px rgba(80,0,18,.28);
+
+            backdrop-filter: blur(10px);
+        }
+
+
+        .mini {
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            color: #a81230;
+
+            letter-spacing: .11em;
+
+            text-transform: uppercase;
+
+            margin-bottom: 12px;
+        }
+
+
+        h1 {
+
+            margin: 0;
+
+            color: #c82242;
+
+            font-size:
+                clamp(27px, 4vw, 38px);
+
+            line-height: 1.12;
+        }
+
+
+        .sub {
+
+            margin: 14px auto 0;
+
+            color: #6f3440;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           BOTÕES
+        ========================== */
+
+        .botoes {
+
+            position: relative;
+
+            width: 245px;
+            height: 78px;
+
+            margin: 30px auto 0;
+        }
+
+
+        .btn {
+
+            position: absolute;
+
+            top: 7px;
+
+            border: 0;
+
+            width: 102px;
+            height: 48px;
+
+            border-radius: 14px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 10px 22px rgba(0,0,0,.16);
+
+            transition:
+                transform .16s ease,
+                box-shadow .16s ease;
+        }
+
+
+        /* SIM */
+
+        #sim {
+
+            left: 0;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e52d50,
+                    #b81434
+                );
+        }
+
+
+        #sim:hover {
+
+            transform: scale(1.08);
+
+            box-shadow:
+                0 13px 28px
+                rgba(184,20,52,.34);
+        }
+
+
+        /* NÃO */
+
+        #nao {
+
+            right: 0;
+
+            color: white;
+
+            background: #171717;
+
+            z-index: 30;
+        }
+
+
+        /* FRASES QUANDO TENTA CLICAR NÃO */
+
+        #mensagemNao {
+
+            min-height: 22px;
+
+            margin-top: 2px;
+
+            color: #b81434;
+
+            font-weight: bold;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           FOGOS
+        ========================== */
+
+        #fogos {
+
+            position: fixed;
+
+            inset: 0;
+
+            width: 100vw;
+            height: 100vh;
+
+            z-index: 100;
+
+            pointer-events: none;
+
+            display: none;
+        }
+
+
+        /* Fundo escuro durante fogos */
+
+        #escurecer {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 95;
+
+            display: none;
+
+            background:
+                rgba(54,0,14,.36);
+
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           MENSAGEM APÓS SIM
+        ========================== */
+
+        #celebracao {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 110;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            pointer-events: none;
+        }
+
+
+        #celebracao .texto {
+
+            color: white;
+
+            text-align: center;
+
+            text-shadow:
+                0 4px 20px rgba(0,0,0,.5);
+
+            animation:
+                entrada .6s
+                cubic-bezier(.2,.9,.2,1.3);
+        }
+
+
+        #celebracao h2 {
+
+            margin: 0;
+
+            font-size:
+                clamp(42px, 8vw, 88px);
+        }
+
+
+        #celebracao p {
+
+            margin: 10px 0 0;
+
+            font-size:
+                clamp(18px, 3vw, 28px);
+
+            font-weight: bold;
+        }
+
+
+        @keyframes entrada {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    scale(.5);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    scale(1);
+            }
+        }
+
+
+        /* =========================
+           CELULAR
+        ========================== */
+
+        @media (max-width: 800px) {
+
+            .moranguete {
+
+                height: 42vh;
+
+                max-width: 42vw;
+
+                left: -7vw;
+
+                opacity: .82;
+            }
+
+
+            .morango-coracao {
+
+                width: 48vw;
+
+                right: -12vw;
+
+                top: 28%;
+
+                opacity: .82;
+            }
+
+
+            .convite {
+
+                padding:
+                    31px 20px 27px;
+            }
+        }
+
+    </style>
 </head>
 
-<body>
-    <div id="conteudo">
-        <h2>Moranguete, aceita sair comigo hoje? </h2>
-        <div style="margin: auto;width: 170px;">
-            <button style="position: fixed;display: block;" class="btn" onclick="sim()">SIM</button>
-            <button class="btn" onclick="desvia(this)" onmouseover="desvia(this)" style="position: absolute;">NÃO</button>
-        </div>
-    </div>
-</body>
-<style>
-    #conteudo {
-        background: #ff7a7a;
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        padding: 10px;
-        text-align: center;
-        font-family: sans-serif;
-    }
 
-    .btn {
-        background: black;
-        color: white;
-        border: none;
-        padding: 10px;
-        width: 80px;
-        border-radius: 5px;
-    }
-</style>
+<body>
+
+
+<div id="conteudo">
+
+
+    <!-- PRIMEIRA IMAGEM -->
+
+    <img
+        src="moranguete.png"
+        class="moranguete"
+        alt="Moranguete"
+    >
+
+
+    <!-- SEGUNDA IMAGEM -->
+
+    <img
+        src="morango-coracao.png"
+        class="morango-coracao"
+        alt="Morango coração"
+    >
+
+
+
+    <main class="convite">
+
+
+        <div class="mini">
+
+            convite oficial 🍓
+
+        </div>
+
+
+        <h1>
+
+            Moranguete, aceita sair comigo hoje?
+
+        </h1>
+
+
+        <p class="sub">
+
+            Prometo que o botão certo é bem fácil de achar 😌
+
+        </p>
+
+
+        <div class="botoes">
+
+
+            <button
+                id="sim"
+                class="btn"
+                onclick="sim()"
+            >
+
+                SIM ❤️
+
+            </button>
+
+
+
+            <button
+                id="nao"
+                class="btn"
+                onclick="desvia(this)"
+                onmouseover="desvia(this)"
+            >
+
+                NÃO
+
+            </button>
+
+
+        </div>
+
+
+        <div id="mensagemNao"></div>
+
+
+    </main>
+
+
+</div>
+
+
+
+<!-- CAMADA ESCURA -->
+
+<div
+    id="escurecer">
+</div>
+
+
+
+<!-- FOGOS -->
+
+<canvas
+    id="fogos">
+</canvas>
+
+
+
+<!-- MENSAGEM FINAL -->
+
+<div id="celebracao">
+
+    <div class="texto">
+
+        <h2>
+
+            EU SABIA! 🎆🍓❤️
+
+        </h2>
+
+        <p>
+
+            Então temos um encontro.
+
+        </p>
+
+    </div>
+
+</div>
+
+
 
 <script>
-    function sim() {
-        alert("Soltando Fogos! :) ");
-        // redireciona para um URL após clicar no SIM
-        location.href = "https://music.youtube.com/watch?v=izGwDsrQ1eQ";
+
+
+/* =========================
+   FRASES DO BOTÃO NÃO
+========================== */
+
+const frases = [
+
+    "Esse botão está com defeito 😌",
+
+    "Tentou mesmo clicar no NÃO? 😂",
+
+    "Acho que você quis apertar o SIM 🍓",
+
+    "Não adianta fugir do destino 👀",
+
+    "O SIM continua ali, viu? ❤️",
+
+    "Última chance... mentira 😏"
+
+];
+
+
+let tentativas = 0;
+
+
+
+/* =========================
+   BOTÃO NÃO FOGE
+========================== */
+
+function desvia(btn) {
+
+
+    tentativas++;
+
+
+    document
+        .getElementById("mensagemNao")
+        .textContent =
+        frases[
+            (tentativas - 1)
+            % frases.length
+        ];
+
+
+
+    btn.style.position =
+        "fixed";
+
+
+    const margem = 18;
+
+
+    const larguraMax =
+        window.innerWidth
+        - btn.offsetWidth
+        - margem;
+
+
+    const alturaMax =
+        window.innerHeight
+        - btn.offsetHeight
+        - margem;
+
+
+
+    const x =
+        Math.max(
+            margem,
+            Math.random()
+            * larguraMax
+        );
+
+
+    const y =
+        Math.max(
+            margem,
+            Math.random()
+            * alturaMax
+        );
+
+
+
+    btn.style.left =
+        x + "px";
+
+
+    btn.style.top =
+        y + "px";
+
+
+
+    /* SIM VAI CRESCENDO */
+
+    const simBtn =
+        document
+        .getElementById("sim");
+
+
+    const escala =
+        Math.min(
+            1 + tentativas * 0.06,
+            1.45
+        );
+
+
+    simBtn.style.transform =
+        `scale(${escala})`;
+
+}
+
+
+
+/* =========================
+   SOM DOS FOGOS
+========================== */
+
+function tocarSomFogos() {
+
+
+    const AudioCtx =
+        window.AudioContext
+        || window.webkitAudioContext;
+
+
+    const ctx =
+        new AudioCtx();
+
+
+
+    function boom(
+        delay,
+        volume = 0.55
+    ) {
+
+
+        const t =
+            ctx.currentTime
+            + delay;
+
+
+
+        /* GRAVE DA EXPLOSÃO */
+
+        const osc =
+            ctx.createOscillator();
+
+
+        const gain =
+            ctx.createGain();
+
+
+        osc.type = "sine";
+
+
+        osc.frequency
+            .setValueAtTime(
+                95,
+                t
+            );
+
+
+        osc.frequency
+            .exponentialRampToValueAtTime(
+                38,
+                t + 0.5
+            );
+
+
+        gain.gain
+            .setValueAtTime(
+                volume,
+                t
+            );
+
+
+        gain.gain
+            .exponentialRampToValueAtTime(
+                0.001,
+                t + 0.65
+            );
+
+
+        osc.connect(gain);
+
+        gain.connect(
+            ctx.destination
+        );
+
+
+        osc.start(t);
+
+        osc.stop(
+            t + 0.7
+        );
+
+
+
+        /* RUÍDO DA EXPLOSÃO */
+
+        const bufferSize =
+            Math.floor(
+                ctx.sampleRate
+                * 0.75
+            );
+
+
+        const buffer =
+            ctx.createBuffer(
+                1,
+                bufferSize,
+                ctx.sampleRate
+            );
+
+
+        const data =
+            buffer
+            .getChannelData(0);
+
+
+
+        for (
+            let i = 0;
+            i < bufferSize;
+            i++
+        ) {
+
+            data[i] =
+                (Math.random() * 2 - 1)
+
+                * Math.pow(
+                    1 - i / bufferSize,
+                    2.5
+                );
+
+        }
+
+
+
+        const noise =
+            ctx.createBufferSource();
+
+
+        const ng =
+            ctx.createGain();
+
+
+        noise.buffer =
+            buffer;
+
+
+        ng.gain
+            .setValueAtTime(
+                volume * 0.75,
+                t
+            );
+
+
+        ng.gain
+            .exponentialRampToValueAtTime(
+                0.001,
+                t + 0.75
+            );
+
+
+        noise.connect(ng);
+
+        ng.connect(
+            ctx.destination
+        );
+
+
+        noise.start(t);
+
     }
 
-    function desvia(btn) {
-        // btn declarado na função
-        btn.style.position = 'absolute';
-        btn.style.bottom = geraPosicao(10, 90);
-        btn.style.left = geraPosicao(10, 90);
-        console.log('opa, desviei...');
+
+
+    boom(0.05, .55);
+
+    boom(0.45, .42);
+
+    boom(0.9, .58);
+
+    boom(1.35, .45);
+
+    boom(1.8, .56);
+
+}
+
+
+
+/* =========================
+   ANIMAÇÃO DOS FOGOS
+========================== */
+
+function iniciarFogos() {
+
+
+    const canvas =
+        document
+        .getElementById("fogos");
+
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    canvas.style.display =
+        "block";
+
+
+
+    function resize() {
+
+
+        canvas.width =
+            window.innerWidth
+            * devicePixelRatio;
+
+
+        canvas.height =
+            window.innerHeight
+            * devicePixelRatio;
+
+
+        canvas.style.width =
+            window.innerWidth
+            + "px";
+
+
+        canvas.style.height =
+            window.innerHeight
+            + "px";
+
+
+        ctx.setTransform(
+            devicePixelRatio,
+            0,
+            0,
+            devicePixelRatio,
+            0,
+            0
+        );
+
     }
 
-    function geraPosicao(min, max) {
-        return (Math.random() * (max - min) + min) + "%";
+
+    resize();
+
+
+
+    const particulas = [];
+
+
+    const cores = [
+
+        "#ffffff",
+
+        "#ffd7df",
+
+        "#ff5a79",
+
+        "#68e0c2",
+
+        "#92f3dd",
+
+        "#ffc2cf"
+
+    ];
+
+
+
+    function explosao(x, y) {
+
+
+        for (
+            let i = 0;
+            i < 95;
+            i++
+        ) {
+
+
+            const ang =
+                Math.random()
+                * Math.PI
+                * 2;
+
+
+            const vel =
+                2
+                + Math.random()
+                * 5.8;
+
+
+
+            particulas.push({
+
+                x: x,
+
+                y: y,
+
+                vx:
+                    Math.cos(ang)
+                    * vel,
+
+                vy:
+                    Math.sin(ang)
+                    * vel,
+
+                life: 1,
+
+                decay:
+                    .012
+                    + Math.random()
+                    * .014,
+
+                size:
+                    1.6
+                    + Math.random()
+                    * 2.2,
+
+                color:
+                    cores[
+                        Math.floor(
+                            Math.random()
+                            * cores.length
+                        )
+                    ]
+
+            });
+
+        }
+
     }
 
+
+
+    let disparos = 0;
+
+
+
+    const intervalo =
+        setInterval(() => {
+
+
+            explosao(
+
+                window.innerWidth
+                * (
+                    .15
+                    + Math.random()
+                    * .7
+                ),
+
+                window.innerHeight
+                * (
+                    .12
+                    + Math.random()
+                    * .5
+                )
+
+            );
+
+
+            disparos++;
+
+
+            if (
+                disparos >= 11
+            ) {
+
+                clearInterval(
+                    intervalo
+                );
+
+            }
+
+
+        }, 230);
+
+
+
+    const inicio =
+        performance.now();
+
+
+
+    function animar(now) {
+
+
+        ctx.fillStyle =
+            "rgba(25,0,8,.15)";
+
+
+        ctx.fillRect(
+
+            0,
+
+            0,
+
+            window.innerWidth,
+
+            window.innerHeight
+
+        );
+
+
+
+        for (
+
+            let i =
+                particulas.length - 1;
+
+            i >= 0;
+
+            i--
+
+        ) {
+
+
+            const p =
+                particulas[i];
+
+
+            p.x += p.vx;
+
+            p.y += p.vy;
+
+
+            p.vx *= .988;
+
+
+            p.vy =
+                p.vy * .988
+                + .035;
+
+
+            p.life -=
+                p.decay;
+
+
+
+            ctx.globalAlpha =
+                Math.max(
+                    p.life,
+                    0
+                );
+
+
+            ctx.fillStyle =
+                p.color;
+
+
+            ctx.beginPath();
+
+
+            ctx.arc(
+
+                p.x,
+
+                p.y,
+
+                p.size,
+
+                0,
+
+                Math.PI * 2
+
+            );
+
+
+            ctx.fill();
+
+
+
+            if (
+                p.life <= 0
+            ) {
+
+                particulas.splice(
+                    i,
+                    1
+                );
+
+            }
+
+        }
+
+
+
+        ctx.globalAlpha = 1;
+
+
+
+        if (
+
+            now - inicio < 5200
+
+            ||
+
+            particulas.length
+
+        ) {
+
+
+            requestAnimationFrame(
+                animar
+            );
+
+
+        } else {
+
+
+            canvas.style.display =
+                "none";
+
+
+        }
+
+    }
+
+
+    requestAnimationFrame(
+        animar
+    );
+
+}
+
+
+
+/* =========================
+   CLICOU NO SIM
+========================== */
+
+function sim() {
+
+
+    document
+        .getElementById(
+            "escurecer"
+        )
+        .style.display =
+        "block";
+
+
+    document
+        .getElementById(
+            "celebracao"
+        )
+        .style.display =
+        "flex";
+
+
+    /* SOM */
+
+    tocarSomFogos();
+
+
+    /* ANIMAÇÃO */
+
+    iniciarFogos();
+
+
+
+    /*
+    DEPOIS DE 5,5 SEGUNDOS
+    ABRE A MÚSICA
+    */
+
+    setTimeout(() => {
+
+        location.href =
+        "https://music.youtube.com/watch?v=izGwDsrQ1eQ";
+
+    }, 5500);
+
+
+}
 
 
 </script>
 
+
+</body>
+
 </html>
-
-
 
 
 
