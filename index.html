@@ -9,6 +9,10 @@
 
     <style>
 
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             overflow: hidden;
@@ -35,54 +39,69 @@
 
         h2 {
             color: white;
-            font-size: 34px;
-            margin-top: 90px;
 
-            text-shadow:
-                0 3px 10px rgba(0,0,0,0.25);
+            font-size: 34px;
+
+            margin-top: 55px;
+
+            padding: 0 20px;
 
             position: relative;
-            z-index: 10;
+
+            z-index: 20;
+
+            text-shadow:
+                0 3px 10px rgba(0,0,0,0.3);
         }
 
 
-        /* IMAGENS */
+        /* =========================
+           IMAGENS
+        ========================== */
 
         .foto {
             position: absolute;
 
-            width: 220px;
-            height: 390px;
+            width: 300px;
+            height: 530px;
 
             object-fit: cover;
 
-            border-radius: 20px;
-
-            box-shadow:
-                0 15px 30px rgba(0,0,0,0.30);
+            border-radius: 22px;
 
             border:
-                3px solid rgba(255,255,255,0.7);
+                3px solid rgba(255,255,255,0.75);
+
+            box-shadow:
+                0 15px 35px rgba(0,0,0,0.32);
+
+            z-index: 3;
         }
 
 
         /* MÉDICA */
 
         #medica {
-            left: 35px;
-            top: 80px;
+            left: 25px;
 
-            transform: rotate(-4deg);
+            top: 50%;
+
+            transform:
+                translateY(-50%)
+                rotate(-3deg);
         }
 
 
         /* ACADEMIA */
 
         #gym {
-            right: 35px;
-            top: 80px;
+            right: 25px;
 
-            transform: rotate(4deg);
+            top: 50%;
+
+            transform:
+                translateY(-50%)
+                rotate(3deg);
         }
 
 
@@ -90,25 +109,33 @@
 
         #cafe {
             left: 50%;
-            bottom: -100px;
+
+            bottom: 15px;
+
+            width: 270px;
+            height: 480px;
 
             transform:
                 translateX(-50%)
                 rotate(-2deg);
+
+            z-index: 2;
         }
 
 
-        /* BOTÕES */
+        /* =========================
+           BOTÕES
+        ========================== */
 
         .botoes {
             position: relative;
 
-            margin: 50px auto 0;
+            width: 210px;
+            height: 70px;
 
-            width: 200px;
-            height: 60px;
+            margin: 55px auto 0;
 
-            z-index: 20;
+            z-index: 30;
         }
 
         .btn {
@@ -125,9 +152,12 @@
 
             cursor: pointer;
 
+            font-size: 15px;
+
             font-weight: bold;
 
-            font-size: 15px;
+            box-shadow:
+                0 6px 15px rgba(0,0,0,0.25);
         }
 
 
@@ -136,16 +166,24 @@
 
             position: fixed;
 
-            left: calc(50% - 100px);
+            left: calc(50% - 105px);
+
+            z-index: 40;
         }
 
 
         #nao {
             position: absolute;
+
+            right: 0;
+
+            z-index: 40;
         }
 
 
-        /* FRASES DO NÃO */
+        /* =========================
+           FRASES DO NÃO
+        ========================== */
 
         #mensagem {
             color: white;
@@ -154,18 +192,20 @@
 
             font-weight: bold;
 
-            margin-top: 80px;
+            margin-top: 85px;
 
             position: relative;
 
             z-index: 30;
 
             text-shadow:
-                0 2px 6px rgba(0,0,0,0.25);
+                0 2px 6px rgba(0,0,0,0.30);
         }
 
 
-        /* FOGOS */
+        /* =========================
+           FOGOS
+        ========================== */
 
         #fogos {
             position: fixed;
@@ -176,15 +216,17 @@
             width: 100vw;
             height: 100vh;
 
-            z-index: 100;
-
             display: none;
+
+            z-index: 100;
 
             pointer-events: none;
         }
 
 
-        /* FUNDO APÓS O SIM */
+        /* =========================
+           FUNDO ESCURO
+        ========================== */
 
         #overlay {
             position: fixed;
@@ -196,15 +238,19 @@
             height: 100vh;
 
             background:
-                rgba(40,0,10,0.45);
+                rgba(40,0,10,0.48);
 
             display: none;
 
             z-index: 90;
+
+            pointer-events: none;
         }
 
 
-        /* MENSAGEM FINAL */
+        /* =========================
+           MENSAGEM FINAL
+        ========================== */
 
         #final {
             position: fixed;
@@ -217,56 +263,86 @@
 
             color: white;
 
-            font-size: 55px;
+            font-size: 52px;
 
             font-weight: bold;
 
-            z-index: 120;
+            text-align: center;
+
+            width: 90%;
 
             display: none;
 
-            text-align: center;
+            z-index: 120;
 
             text-shadow:
-                0 5px 20px rgba(0,0,0,0.5);
+                0 5px 20px rgba(0,0,0,0.55);
         }
 
 
-        /* CELULAR */
+        /* =========================
+           CELULAR
+        ========================== */
 
         @media (max-width: 800px) {
 
             h2 {
-                font-size: 26px;
-                margin-top: 50px;
-                padding: 0 25px;
+                font-size: 25px;
+
+                margin-top: 28px;
+
+                padding: 0 18px;
             }
+
 
             .foto {
-                width: 130px;
-                height: 230px;
+                width: 155px;
+                height: 275px;
+
+                border-radius: 16px;
             }
+
 
             #medica {
-                left: 10px;
-                top: 150px;
+                left: 5px;
+
+                top: 48%;
             }
 
+
             #gym {
-                right: 10px;
-                top: 150px;
+                right: 5px;
+
+                top: 48%;
             }
+
 
             #cafe {
                 width: 150px;
                 height: 265px;
 
-                bottom: -80px;
+                left: 50%;
+
+                bottom: 12px;
             }
 
+
+            .botoes {
+                margin-top: 35px;
+            }
+
+
+            #mensagem {
+                font-size: 16px;
+
+                margin-top: 75px;
+
+                padding: 0 15px;
+            }
+
+
             #final {
-                font-size: 38px;
-                width: 90%;
+                font-size: 36px;
             }
 
         }
@@ -282,7 +358,7 @@
 <div id="conteudo">
 
 
-    <!-- MÉDICA -->
+    <!-- MORANGUETE MÉDICA -->
 
     <img
         id="medica"
@@ -292,7 +368,7 @@
     >
 
 
-    <!-- ACADEMIA -->
+    <!-- MORANGUETE ACADEMIA -->
 
     <img
         id="gym"
@@ -302,7 +378,7 @@
     >
 
 
-    <!-- CAFÉ -->
+    <!-- MORANGUETE CAFÉ -->
 
     <img
         id="cafe"
@@ -359,15 +435,17 @@
 
 
 <div id="final">
-
     Então temos um encontro 🍓❤️
-
 </div>
 
 
 
 <script>
 
+
+/* =========================
+   FRASES
+========================= */
 
 const frases = [
 
@@ -383,9 +461,7 @@ const frases = [
 
     "Moranguete, colabora comigo 🍓❤️",
 
-    "O SIM tá paradinho ali...",
-
-    "Já deu pra entender que NÃO não é opção 😂"
+    "O SIM tá paradinho ali..."
 
 ];
 
@@ -394,7 +470,9 @@ let tentativas = 0;
 
 
 
-/* BOTÃO NÃO FOGE */
+/* =========================
+   BOTÃO NÃO
+========================= */
 
 function desvia(btn) {
 
@@ -423,32 +501,31 @@ function desvia(btn) {
 
     tentativas++;
 
-
 }
 
 
 
-/* POSIÇÃO ALEATÓRIA */
+/* =========================
+   POSIÇÃO ALEATÓRIA
+========================= */
 
 function geraPosicao(min, max) {
-
 
     return (
 
         Math.random()
-
         * (max - min)
-
         + min
 
     ) + "%";
-
 
 }
 
 
 
-/* CLICOU SIM */
+/* =========================
+   CLICOU NO SIM
+========================= */
 
 function sim() {
 
@@ -471,8 +548,6 @@ function sim() {
 
 
 
-    /* ABRE A MÚSICA APÓS 5 SEGUNDOS */
-
     setTimeout(() => {
 
 
@@ -482,12 +557,13 @@ function sim() {
 
     }, 5000);
 
-
 }
 
 
 
-/* SOM DOS FOGOS */
+/* =========================
+   SOM DOS FOGOS
+========================= */
 
 function tocarSomFogos() {
 
@@ -538,7 +614,6 @@ function tocarSomFogos() {
             );
 
 
-
         gain.gain
             .setValueAtTime(
                 0.5,
@@ -551,7 +626,6 @@ function tocarSomFogos() {
                 0.001,
                 tempo + 0.7
             );
-
 
 
         osc.connect(gain);
@@ -570,23 +644,25 @@ function tocarSomFogos() {
     }
 
 
-
     boom(0);
 
-    boom(0.6);
+    boom(0.5);
 
-    boom(1.2);
+    boom(1.0);
 
-    boom(1.8);
+    boom(1.5);
 
-    boom(2.4);
+    boom(2.0);
 
+    boom(2.5);
 
 }
 
 
 
-/* FOGOS */
+/* =========================
+   FOGOS
+========================= */
 
 function iniciarFogos() {
 
@@ -610,7 +686,6 @@ function iniciarFogos() {
 
     canvas.style.display =
         "block";
-
 
 
     const particulas = [];
@@ -657,24 +732,19 @@ function iniciarFogos() {
 
             particulas.push({
 
-
                 x: x,
 
                 y: y,
-
 
                 vx:
                     Math.cos(angulo)
                     * velocidade,
 
-
                 vy:
                     Math.sin(angulo)
                     * velocidade,
 
-
                 vida: 100,
-
 
                 cor:
                     cores[
@@ -684,19 +754,15 @@ function iniciarFogos() {
                         )
                     ]
 
-
             });
 
-
         }
-
 
     }
 
 
 
-    let quantidade =
-        0;
+    let quantidade = 0;
 
 
 
@@ -706,15 +772,12 @@ function iniciarFogos() {
 
             explosao(
 
-
                 Math.random()
                 * canvas.width,
-
 
                 Math.random()
                 * canvas.height
                 * 0.65
-
 
             );
 
@@ -726,11 +789,9 @@ function iniciarFogos() {
                 quantidade >= 10
             ) {
 
-
                 clearInterval(
                     intervalo
                 );
-
 
             }
 
@@ -760,68 +821,84 @@ function iniciarFogos() {
 
 
 
-        particulas.forEach(
-            p => {
+        for (
+            let i =
+                particulas.length - 1;
+
+            i >= 0;
+
+            i--
+        ) {
 
 
-                p.x += p.vx;
+            const p =
+                particulas[i];
 
 
-                p.y += p.vy;
+            p.x += p.vx;
+
+            p.y += p.vy;
 
 
-                p.vy += 0.04;
+            p.vy += 0.04;
 
 
-                p.vida--;
+            p.vida--;
 
 
 
-                ctx.globalAlpha =
-                    p.vida / 100;
+            ctx.globalAlpha =
+                p.vida / 100;
 
 
-                ctx.fillStyle =
-                    p.cor;
+            ctx.fillStyle =
+                p.cor;
 
 
-                ctx.beginPath();
+            ctx.beginPath();
 
 
-                ctx.arc(
+            ctx.arc(
 
-                    p.x,
+                p.x,
 
-                    p.y,
+                p.y,
 
-                    2.5,
+                2.5,
 
-                    0,
+                0,
 
-                    Math.PI * 2
+                Math.PI * 2
 
+            );
+
+
+            ctx.fill();
+
+
+
+            if (
+                p.vida <= 0
+            ) {
+
+                particulas.splice(
+                    i,
+                    1
                 );
 
-
-                ctx.fill();
-
-
             }
-        );
+
+        }
 
 
 
-        ctx.globalAlpha =
-            1;
+        ctx.globalAlpha = 1;
 
 
 
         if (
 
-            particulas.some(
-                p =>
-                p.vida > 0
-            )
+            particulas.length > 0
 
             ||
 
@@ -834,16 +911,13 @@ function iniciarFogos() {
                 animar
             );
 
-
         }
-
 
     }
 
 
 
     animar();
-
 
 }
 
@@ -854,6 +928,5 @@ function iniciarFogos() {
 </body>
 
 </html>
-
 
 
