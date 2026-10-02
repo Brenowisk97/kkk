@@ -39,15 +39,11 @@
 
         h2 {
             color: white;
-
             font-size: 34px;
-
             margin-top: 55px;
-
             padding: 0 20px;
 
             position: relative;
-
             z-index: 20;
 
             text-shadow:
@@ -79,11 +75,8 @@
         }
 
 
-        /* MÉDICA */
-
         #medica {
             left: 25px;
-
             top: 50%;
 
             transform:
@@ -92,11 +85,8 @@
         }
 
 
-        /* ACADEMIA */
-
         #gym {
             right: 25px;
-
             top: 50%;
 
             transform:
@@ -105,11 +95,8 @@
         }
 
 
-        /* CAFÉ */
-
         #cafe {
             left: 50%;
-
             bottom: 15px;
 
             width: 270px;
@@ -138,6 +125,7 @@
             z-index: 30;
         }
 
+
         .btn {
             background: black;
             color: white;
@@ -164,9 +152,9 @@
         #sim {
             background: #b9153d;
 
-            position: fixed;
+            position: absolute;
 
-            left: calc(50% - 105px);
+            left: 0;
 
             z-index: 40;
         }
@@ -177,12 +165,16 @@
 
             right: 0;
 
-            z-index: 40;
+            z-index: 200;
+
+            transition:
+                left 0.08s,
+                top 0.08s;
         }
 
 
         /* =========================
-           FRASES DO NÃO
+           FRASES
         ========================== */
 
         #mensagem {
@@ -224,10 +216,6 @@
         }
 
 
-        /* =========================
-           FUNDO ESCURO
-        ========================== */
-
         #overlay {
             position: fixed;
 
@@ -247,10 +235,6 @@
             pointer-events: none;
         }
 
-
-        /* =========================
-           MENSAGEM FINAL
-        ========================== */
 
         #final {
             position: fixed;
@@ -288,9 +272,7 @@
 
             h2 {
                 font-size: 25px;
-
                 margin-top: 28px;
-
                 padding: 0 18px;
             }
 
@@ -305,14 +287,12 @@
 
             #medica {
                 left: 5px;
-
                 top: 48%;
             }
 
 
             #gym {
                 right: 5px;
-
                 top: 48%;
             }
 
@@ -358,8 +338,6 @@
 <div id="conteudo">
 
 
-    <!-- MORANGUETE MÉDICA -->
-
     <img
         id="medica"
         class="foto"
@@ -368,8 +346,6 @@
     >
 
 
-    <!-- MORANGUETE ACADEMIA -->
-
     <img
         id="gym"
         class="foto"
@@ -377,8 +353,6 @@
         alt="Moranguete academia"
     >
 
-
-    <!-- MORANGUETE CAFÉ -->
 
     <img
         id="cafe"
@@ -410,8 +384,8 @@
         <button
             id="nao"
             class="btn"
-            onclick="desvia(this)"
             onmouseover="desvia(this)"
+            onclick="desvia(this)"
         >
             NÃO
         </button>
@@ -430,7 +404,6 @@
 
 <div id="overlay"></div>
 
-
 <canvas id="fogos"></canvas>
 
 
@@ -444,7 +417,7 @@
 
 
 /* =========================
-   FRASES
+   FRASES DO NÃO
 ========================= */
 
 const frases = [
@@ -457,11 +430,47 @@ const frases = [
 
     "Acho que você queria clicar no SIM 👀",
 
-    "Para de insistir no NÃO 😭",
+    "Moranguete, pensa com carinho 😌",
 
-    "Moranguete, colabora comigo 🍓❤️",
+    "Não foi dessa vez 😂",
 
-    "O SIM tá paradinho ali..."
+    "Esse botão é meio tímido...",
+
+    "Tá insistindo mesmo? 👀",
+
+    "O SIM continua paradinho ali ❤️",
+
+    "Quase! 😂",
+
+    "Moranguete, colabora comigo 🍓",
+
+    "Esse NÃO tá rápido hoje...",
+
+    "Você chegou perto dessa vez 😂",
+
+    "Mais uma tentativa? 👀",
+
+    "Esse botão claramente não quer ser clicado",
+
+    "Acho que o universo tá dando um sinal 🍓",
+
+    "Vai cansar antes dele 😂",
+
+    "Olha o SIM ali do lado... 👀",
+
+    "Você ainda tá tentando? 😂",
+
+    "Tá ficando pessoal já 🍓",
+
+    "Boa tentativa 😌",
+
+    "Esse NÃO treinou cardio hoje 😂",
+
+    "Talvez seja melhor tentar o outro botão ❤️",
+
+    "Moranguete... 😂",
+
+    "Quase pegou! Quase..."
 
 ];
 
@@ -471,24 +480,120 @@ let tentativas = 0;
 
 
 /* =========================
-   BOTÃO NÃO
+   BOTÃO NÃO FOGE
 ========================= */
 
 function desvia(btn) {
 
 
-    btn.style.position =
-        "absolute";
+    /*
+       FIXED faz o botão poder viajar
+       pela TELA INTEIRA.
+    */
+
+    btn.style.position = "fixed";
 
 
-    btn.style.bottom =
-        geraPosicao(10, 90);
+    const margem = 25;
+
+
+    const larguraBotao =
+        btn.offsetWidth;
+
+
+    const alturaBotao =
+        btn.offsetHeight;
+
+
+    /*
+       Limites da tela para impedir
+       que o botão desapareça.
+    */
+
+    const maxX =
+        window.innerWidth
+        - larguraBotao
+        - margem;
+
+
+    const maxY =
+        window.innerHeight
+        - alturaBotao
+        - margem;
+
+
+
+    let novoX;
+
+    let novoY;
+
+
+    const posicaoAtual =
+        btn.getBoundingClientRect();
+
+
+    /*
+       Procuramos uma posição que esteja
+       suficientemente distante da atual.
+    */
+
+    let tentativasPosicao = 0;
+
+
+    do {
+
+
+        novoX =
+            margem
+            + Math.random()
+            * (maxX - margem);
+
+
+        novoY =
+            margem
+            + Math.random()
+            * (maxY - margem);
+
+
+        tentativasPosicao++;
+
+
+    } while (
+
+        Math.hypot(
+
+            novoX - posicaoAtual.left,
+
+            novoY - posicaoAtual.top
+
+        ) < 300
+
+        &&
+
+        tentativasPosicao < 20
+
+    );
+
 
 
     btn.style.left =
-        geraPosicao(10, 90);
+        novoX + "px";
 
 
+    btn.style.top =
+        novoY + "px";
+
+
+    btn.style.right =
+        "auto";
+
+
+    btn.style.bottom =
+        "auto";
+
+
+
+    /* TROCA A FRASE */
 
     document
         .getElementById("mensagem")
@@ -500,24 +605,6 @@ function desvia(btn) {
 
 
     tentativas++;
-
-}
-
-
-
-/* =========================
-   POSIÇÃO ALEATÓRIA
-========================= */
-
-function geraPosicao(min, max) {
-
-    return (
-
-        Math.random()
-        * (max - min)
-        + min
-
-    ) + "%";
 
 }
 
@@ -586,14 +673,12 @@ function tocarSomFogos() {
             + delay;
 
 
-
         const osc =
             audio.createOscillator();
 
 
         const gain =
             audio.createGain();
-
 
 
         osc.type =
@@ -648,11 +733,11 @@ function tocarSomFogos() {
 
     boom(0.5);
 
-    boom(1.0);
+    boom(1);
 
     boom(1.5);
 
-    boom(2.0);
+    boom(2);
 
     boom(2.5);
 
@@ -789,6 +874,7 @@ function iniciarFogos() {
                 quantidade >= 10
             ) {
 
+
                 clearInterval(
                     intervalo
                 );
@@ -846,7 +932,6 @@ function iniciarFogos() {
             p.vida--;
 
 
-
             ctx.globalAlpha =
                 p.vida / 100;
 
@@ -881,6 +966,7 @@ function iniciarFogos() {
                 p.vida <= 0
             ) {
 
+
                 particulas.splice(
                     i,
                     1
@@ -914,7 +1000,6 @@ function iniciarFogos() {
         }
 
     }
-
 
 
     animar();
