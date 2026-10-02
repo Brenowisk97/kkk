@@ -9,444 +9,270 @@
 
     <style>
 
-        * {
-            box-sizing: border-box;
-        }
-
-        html, body {
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
         }
-
-        /* =========================
-           FUNDO
-        ========================== */
 
         #conteudo {
+            background: linear-gradient(
+                135deg,
+                #ff8a95,
+                #ff5f73,
+                #d9304f
+            );
 
             width: 100vw;
             height: 100vh;
 
-            position: relative;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            background:
-                radial-gradient(
-                    circle at 50% 35%,
-                    rgba(255,255,255,.18),
-                    transparent 32%
-                ),
-                linear-gradient(
-                    135deg,
-                    #ff8b91 0%,
-                    #f04f64 52%,
-                    #b71937 100%
-                );
-        }
-
-
-        /* =========================
-           MORANGUETE
-        ========================== */
-
-        .moranguete {
-
-            position: absolute;
-
-            left: 4vw;
-            bottom: -2vh;
-
-            height: min(76vh, 700px);
-            max-width: 31vw;
-
-            object-fit: contain;
-
-            filter:
-                drop-shadow(
-                    0 18px 20px rgba(0,0,0,.25)
-                );
-
-            z-index: 2;
-        }
-
-
-        /* =========================
-           MORANGO CORAÇÃO
-        ========================== */
-
-        .morango-coracao {
-
-            position: absolute;
-
-            right: 5vw;
-            top: 50%;
-
-            width: min(29vw, 410px);
-
-            transform: translateY(-50%);
-
-            filter:
-                drop-shadow(
-                    0 18px 25px rgba(0,0,0,.25)
-                );
-
-            animation:
-                flutuar 3s ease-in-out infinite;
-
-            z-index: 2;
-        }
-
-
-        @keyframes flutuar {
-
-            0%, 100% {
-                transform:
-                    translateY(-50%)
-                    rotate(-2deg);
-            }
-
-            50% {
-                transform:
-                    translateY(-56%)
-                    rotate(2deg);
-            }
-        }
-
-
-        /* =========================
-           CAIXA DO CONVITE
-        ========================== */
-
-        .convite {
-
-            position: relative;
-
-            z-index: 10;
-
-            width: min(520px, 86vw);
-
-            padding: 38px 34px 34px;
+            position: fixed;
+            top: 0;
+            left: 0;
 
             text-align: center;
-
-            background:
-                rgba(255,255,255,.92);
-
-            border:
-                1px solid rgba(255,255,255,.75);
-
-            border-radius: 28px;
-
-            box-shadow:
-                0 28px 70px rgba(80,0,18,.28);
-
-            backdrop-filter: blur(10px);
         }
 
+        h2 {
+            color: white;
+            font-size: 34px;
+            margin-top: 90px;
 
-        .mini {
-
-            font-size: 14px;
-
-            font-weight: bold;
-
-            color: #a81230;
-
-            letter-spacing: .11em;
-
-            text-transform: uppercase;
-
-            margin-bottom: 12px;
-        }
-
-
-        h1 {
-
-            margin: 0;
-
-            color: #c82242;
-
-            font-size:
-                clamp(27px, 4vw, 38px);
-
-            line-height: 1.12;
-        }
-
-
-        .sub {
-
-            margin: 14px auto 0;
-
-            color: #6f3440;
-
-            font-size: 16px;
-        }
-
-
-        /* =========================
-           BOTÕES
-        ========================== */
-
-        .botoes {
+            text-shadow:
+                0 3px 10px rgba(0,0,0,0.25);
 
             position: relative;
-
-            width: 245px;
-            height: 78px;
-
-            margin: 30px auto 0;
+            z-index: 10;
         }
 
 
-        .btn {
+        /* IMAGENS */
 
+        .foto {
             position: absolute;
 
-            top: 7px;
+            width: 220px;
+            height: 390px;
 
-            border: 0;
+            object-fit: cover;
 
-            width: 102px;
-            height: 48px;
+            border-radius: 20px;
 
-            border-radius: 14px;
+            box-shadow:
+                0 15px 30px rgba(0,0,0,0.30);
 
-            font-size: 16px;
+            border:
+                3px solid rgba(255,255,255,0.7);
+        }
 
-            font-weight: bold;
+
+        /* MÉDICA */
+
+        #medica {
+            left: 35px;
+            top: 80px;
+
+            transform: rotate(-4deg);
+        }
+
+
+        /* ACADEMIA */
+
+        #gym {
+            right: 35px;
+            top: 80px;
+
+            transform: rotate(4deg);
+        }
+
+
+        /* CAFÉ */
+
+        #cafe {
+            left: 50%;
+            bottom: -100px;
+
+            transform:
+                translateX(-50%)
+                rotate(-2deg);
+        }
+
+
+        /* BOTÕES */
+
+        .botoes {
+            position: relative;
+
+            margin: 50px auto 0;
+
+            width: 200px;
+            height: 60px;
+
+            z-index: 20;
+        }
+
+        .btn {
+            background: black;
+            color: white;
+
+            border: none;
+
+            padding: 12px;
+
+            width: 90px;
+
+            border-radius: 8px;
 
             cursor: pointer;
 
-            box-shadow:
-                0 10px 22px rgba(0,0,0,.16);
-
-            transition:
-                transform .16s ease,
-                box-shadow .16s ease;
-        }
-
-
-        /* SIM */
-
-        #sim {
-
-            left: 0;
-
-            color: white;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #e52d50,
-                    #b81434
-                );
-        }
-
-
-        #sim:hover {
-
-            transform: scale(1.08);
-
-            box-shadow:
-                0 13px 28px
-                rgba(184,20,52,.34);
-        }
-
-
-        /* NÃO */
-
-        #nao {
-
-            right: 0;
-
-            color: white;
-
-            background: #171717;
-
-            z-index: 30;
-        }
-
-
-        /* FRASES QUANDO TENTA CLICAR NÃO */
-
-        #mensagemNao {
-
-            min-height: 22px;
-
-            margin-top: 2px;
-
-            color: #b81434;
-
             font-weight: bold;
 
-            font-size: 14px;
+            font-size: 15px;
         }
 
 
-        /* =========================
-           FOGOS
-        ========================== */
-
-        #fogos {
+        #sim {
+            background: #b9153d;
 
             position: fixed;
 
-            inset: 0;
+            left: calc(50% - 100px);
+        }
+
+
+        #nao {
+            position: absolute;
+        }
+
+
+        /* FRASES DO NÃO */
+
+        #mensagem {
+            color: white;
+
+            font-size: 19px;
+
+            font-weight: bold;
+
+            margin-top: 80px;
+
+            position: relative;
+
+            z-index: 30;
+
+            text-shadow:
+                0 2px 6px rgba(0,0,0,0.25);
+        }
+
+
+        /* FOGOS */
+
+        #fogos {
+            position: fixed;
+
+            top: 0;
+            left: 0;
 
             width: 100vw;
             height: 100vh;
 
             z-index: 100;
 
-            pointer-events: none;
-
             display: none;
+
+            pointer-events: none;
         }
 
 
-        /* Fundo escuro durante fogos */
+        /* FUNDO APÓS O SIM */
 
-        #escurecer {
-
+        #overlay {
             position: fixed;
 
-            inset: 0;
+            top: 0;
+            left: 0;
 
-            z-index: 95;
-
-            display: none;
+            width: 100vw;
+            height: 100vh;
 
             background:
-                rgba(54,0,14,.36);
-
-            pointer-events: none;
-        }
-
-
-        /* =========================
-           MENSAGEM APÓS SIM
-        ========================== */
-
-        #celebracao {
-
-            position: fixed;
-
-            inset: 0;
-
-            z-index: 110;
+                rgba(40,0,10,0.45);
 
             display: none;
 
-            align-items: center;
-
-            justify-content: center;
-
-            pointer-events: none;
+            z-index: 90;
         }
 
 
-        #celebracao .texto {
+        /* MENSAGEM FINAL */
+
+        #final {
+            position: fixed;
+
+            top: 50%;
+            left: 50%;
+
+            transform:
+                translate(-50%, -50%);
 
             color: white;
+
+            font-size: 55px;
+
+            font-weight: bold;
+
+            z-index: 120;
+
+            display: none;
 
             text-align: center;
 
             text-shadow:
-                0 4px 20px rgba(0,0,0,.5);
-
-            animation:
-                entrada .6s
-                cubic-bezier(.2,.9,.2,1.3);
+                0 5px 20px rgba(0,0,0,0.5);
         }
 
 
-        #celebracao h2 {
-
-            margin: 0;
-
-            font-size:
-                clamp(42px, 8vw, 88px);
-        }
-
-
-        #celebracao p {
-
-            margin: 10px 0 0;
-
-            font-size:
-                clamp(18px, 3vw, 28px);
-
-            font-weight: bold;
-        }
-
-
-        @keyframes entrada {
-
-            from {
-
-                opacity: 0;
-
-                transform:
-                    scale(.5);
-            }
-
-            to {
-
-                opacity: 1;
-
-                transform:
-                    scale(1);
-            }
-        }
-
-
-        /* =========================
-           CELULAR
-        ========================== */
+        /* CELULAR */
 
         @media (max-width: 800px) {
 
-            .moranguete {
-
-                height: 42vh;
-
-                max-width: 42vw;
-
-                left: -7vw;
-
-                opacity: .82;
+            h2 {
+                font-size: 26px;
+                margin-top: 50px;
+                padding: 0 25px;
             }
 
-
-            .morango-coracao {
-
-                width: 48vw;
-
-                right: -12vw;
-
-                top: 28%;
-
-                opacity: .82;
+            .foto {
+                width: 130px;
+                height: 230px;
             }
 
-
-            .convite {
-
-                padding:
-                    31px 20px 27px;
+            #medica {
+                left: 10px;
+                top: 150px;
             }
+
+            #gym {
+                right: 10px;
+                top: 150px;
+            }
+
+            #cafe {
+                width: 150px;
+                height: 265px;
+
+                bottom: -80px;
+            }
+
+            #final {
+                font-size: 38px;
+                width: 90%;
+            }
+
         }
 
     </style>
+
 </head>
 
 
@@ -456,124 +282,85 @@
 <div id="conteudo">
 
 
-    <!-- PRIMEIRA IMAGEM -->
+    <!-- MÉDICA -->
 
     <img
-        src="moranguete.png"
-        class="moranguete"
-        alt="Moranguete"
+        id="medica"
+        class="foto"
+        src="Moranguetemedica.png"
+        alt="Moranguete médica"
     >
 
 
-    <!-- SEGUNDA IMAGEM -->
+    <!-- ACADEMIA -->
 
     <img
-        src="morango-coracao.png"
-        class="morango-coracao"
-        alt="Morango coração"
+        id="gym"
+        class="foto"
+        src="Moranguetegymr.png"
+        alt="Moranguete academia"
+    >
+
+
+    <!-- CAFÉ -->
+
+    <img
+        id="cafe"
+        class="foto"
+        src="moranguetecafe.png"
+        alt="Moranguete café"
     >
 
 
 
-    <main class="convite">
-
-
-        <div class="mini">
-
-            convite oficial 🍓
-
-        </div>
-
-
-        <h1>
-
-            Moranguete, aceita sair comigo hoje?
-
-        </h1>
-
-
-        <p class="sub">
-
-            Prometo que o botão certo é bem fácil de achar 😌
-
-        </p>
-
-
-        <div class="botoes">
-
-
-            <button
-                id="sim"
-                class="btn"
-                onclick="sim()"
-            >
-
-                SIM ❤️
-
-            </button>
+    <h2>
+        Moranguete, aceita sair comigo esse sábado? 🍓❤️
+    </h2>
 
 
 
-            <button
-                id="nao"
-                class="btn"
-                onclick="desvia(this)"
-                onmouseover="desvia(this)"
-            >
-
-                NÃO
-
-            </button>
+    <div class="botoes">
 
 
-        </div>
+        <button
+            id="sim"
+            class="btn"
+            onclick="sim()"
+        >
+            SIM
+        </button>
 
 
-        <div id="mensagemNao"></div>
+        <button
+            id="nao"
+            class="btn"
+            onclick="desvia(this)"
+            onmouseover="desvia(this)"
+        >
+            NÃO
+        </button>
 
-
-    </main>
-
-
-</div>
-
-
-
-<!-- CAMADA ESCURA -->
-
-<div
-    id="escurecer">
-</div>
-
-
-
-<!-- FOGOS -->
-
-<canvas
-    id="fogos">
-</canvas>
-
-
-
-<!-- MENSAGEM FINAL -->
-
-<div id="celebracao">
-
-    <div class="texto">
-
-        <h2>
-
-            EU SABIA! 🎆🍓❤️
-
-        </h2>
-
-        <p>
-
-            Então temos um encontro.
-
-        </p>
 
     </div>
+
+
+
+    <p id="mensagem"></p>
+
+
+</div>
+
+
+
+<div id="overlay"></div>
+
+
+<canvas id="fogos"></canvas>
+
+
+<div id="final">
+
+    Então temos um encontro 🍓❤️
 
 </div>
 
@@ -582,23 +369,23 @@
 <script>
 
 
-/* =========================
-   FRASES DO BOTÃO NÃO
-========================== */
-
 const frases = [
 
-    "Esse botão está com defeito 😌",
+    "Tem certeza? 🤨",
 
-    "Tentou mesmo clicar no NÃO? 😂",
+    "Pensa melhor... 🍓",
 
-    "Acho que você quis apertar o SIM 🍓",
+    "Você não vai conseguir clicar aí 😂",
 
-    "Não adianta fugir do destino 👀",
+    "Acho que você queria clicar no SIM 👀",
 
-    "O SIM continua ali, viu? ❤️",
+    "Para de insistir no NÃO 😭",
 
-    "Última chance... mentira 😏"
+    "Moranguete, colabora comigo 🍓❤️",
+
+    "O SIM tá paradinho ali...",
+
+    "Já deu pra entender que NÃO não é opção 😂"
 
 ];
 
@@ -607,96 +394,100 @@ let tentativas = 0;
 
 
 
-/* =========================
-   BOTÃO NÃO FOGE
-========================== */
+/* BOTÃO NÃO FOGE */
 
 function desvia(btn) {
+
+
+    btn.style.position =
+        "absolute";
+
+
+    btn.style.bottom =
+        geraPosicao(10, 90);
+
+
+    btn.style.left =
+        geraPosicao(10, 90);
+
+
+
+    document
+        .getElementById("mensagem")
+        .innerText =
+        frases[
+            tentativas
+            % frases.length
+        ];
 
 
     tentativas++;
 
 
-    document
-        .getElementById("mensagemNao")
-        .textContent =
-        frases[
-            (tentativas - 1)
-            % frases.length
-        ];
+}
 
 
 
-    btn.style.position =
-        "fixed";
+/* POSIÇÃO ALEATÓRIA */
+
+function geraPosicao(min, max) {
 
 
-    const margem = 18;
+    return (
 
+        Math.random()
 
-    const larguraMax =
-        window.innerWidth
-        - btn.offsetWidth
-        - margem;
+        * (max - min)
 
+        + min
 
-    const alturaMax =
-        window.innerHeight
-        - btn.offsetHeight
-        - margem;
+    ) + "%";
 
-
-
-    const x =
-        Math.max(
-            margem,
-            Math.random()
-            * larguraMax
-        );
-
-
-    const y =
-        Math.max(
-            margem,
-            Math.random()
-            * alturaMax
-        );
-
-
-
-    btn.style.left =
-        x + "px";
-
-
-    btn.style.top =
-        y + "px";
-
-
-
-    /* SIM VAI CRESCENDO */
-
-    const simBtn =
-        document
-        .getElementById("sim");
-
-
-    const escala =
-        Math.min(
-            1 + tentativas * 0.06,
-            1.45
-        );
-
-
-    simBtn.style.transform =
-        `scale(${escala})`;
 
 }
 
 
 
-/* =========================
-   SOM DOS FOGOS
-========================== */
+/* CLICOU SIM */
+
+function sim() {
+
+
+    document
+        .getElementById("overlay")
+        .style.display =
+        "block";
+
+
+    document
+        .getElementById("final")
+        .style.display =
+        "block";
+
+
+    tocarSomFogos();
+
+    iniciarFogos();
+
+
+
+    /* ABRE A MÚSICA APÓS 5 SEGUNDOS */
+
+    setTimeout(() => {
+
+
+        location.href =
+        "https://music.youtube.com/watch?v=izGwDsrQ1eQ";
+
+
+    }, 5000);
+
+
+}
+
+
+
+/* SOM DOS FOGOS */
 
 function tocarSomFogos() {
 
@@ -706,176 +497,96 @@ function tocarSomFogos() {
         || window.webkitAudioContext;
 
 
-    const ctx =
+    const audio =
         new AudioCtx();
 
 
 
-    function boom(
-        delay,
-        volume = 0.55
-    ) {
+    function boom(delay) {
 
 
-        const t =
-            ctx.currentTime
+        const tempo =
+            audio.currentTime
             + delay;
 
 
 
-        /* GRAVE DA EXPLOSÃO */
-
         const osc =
-            ctx.createOscillator();
+            audio.createOscillator();
 
 
         const gain =
-            ctx.createGain();
+            audio.createGain();
 
 
-        osc.type = "sine";
+
+        osc.type =
+            "sine";
 
 
         osc.frequency
             .setValueAtTime(
-                95,
-                t
+                90,
+                tempo
             );
 
 
         osc.frequency
             .exponentialRampToValueAtTime(
-                38,
-                t + 0.5
+                35,
+                tempo + 0.5
             );
+
 
 
         gain.gain
             .setValueAtTime(
-                volume,
-                t
+                0.5,
+                tempo
             );
 
 
         gain.gain
             .exponentialRampToValueAtTime(
                 0.001,
-                t + 0.65
+                tempo + 0.7
             );
+
 
 
         osc.connect(gain);
 
         gain.connect(
-            ctx.destination
+            audio.destination
         );
 
 
-        osc.start(t);
+        osc.start(tempo);
 
         osc.stop(
-            t + 0.7
+            tempo + 0.7
         );
-
-
-
-        /* RUÍDO DA EXPLOSÃO */
-
-        const bufferSize =
-            Math.floor(
-                ctx.sampleRate
-                * 0.75
-            );
-
-
-        const buffer =
-            ctx.createBuffer(
-                1,
-                bufferSize,
-                ctx.sampleRate
-            );
-
-
-        const data =
-            buffer
-            .getChannelData(0);
-
-
-
-        for (
-            let i = 0;
-            i < bufferSize;
-            i++
-        ) {
-
-            data[i] =
-                (Math.random() * 2 - 1)
-
-                * Math.pow(
-                    1 - i / bufferSize,
-                    2.5
-                );
-
-        }
-
-
-
-        const noise =
-            ctx.createBufferSource();
-
-
-        const ng =
-            ctx.createGain();
-
-
-        noise.buffer =
-            buffer;
-
-
-        ng.gain
-            .setValueAtTime(
-                volume * 0.75,
-                t
-            );
-
-
-        ng.gain
-            .exponentialRampToValueAtTime(
-                0.001,
-                t + 0.75
-            );
-
-
-        noise.connect(ng);
-
-        ng.connect(
-            ctx.destination
-        );
-
-
-        noise.start(t);
 
     }
 
 
 
-    boom(0.05, .55);
+    boom(0);
 
-    boom(0.45, .42);
+    boom(0.6);
 
-    boom(0.9, .58);
+    boom(1.2);
 
-    boom(1.35, .45);
+    boom(1.8);
 
-    boom(1.8, .56);
+    boom(2.4);
+
 
 }
 
 
 
-/* =========================
-   ANIMAÇÃO DOS FOGOS
-========================== */
+/* FOGOS */
 
 function iniciarFogos() {
 
@@ -889,47 +600,16 @@ function iniciarFogos() {
         canvas.getContext("2d");
 
 
+    canvas.width =
+        window.innerWidth;
+
+
+    canvas.height =
+        window.innerHeight;
+
+
     canvas.style.display =
         "block";
-
-
-
-    function resize() {
-
-
-        canvas.width =
-            window.innerWidth
-            * devicePixelRatio;
-
-
-        canvas.height =
-            window.innerHeight
-            * devicePixelRatio;
-
-
-        canvas.style.width =
-            window.innerWidth
-            + "px";
-
-
-        canvas.style.height =
-            window.innerHeight
-            + "px";
-
-
-        ctx.setTransform(
-            devicePixelRatio,
-            0,
-            0,
-            devicePixelRatio,
-            0,
-            0
-        );
-
-    }
-
-
-    resize();
 
 
 
@@ -940,15 +620,13 @@ function iniciarFogos() {
 
         "#ffffff",
 
-        "#ffd7df",
+        "#ff5577",
 
-        "#ff5a79",
+        "#ffd700",
 
-        "#68e0c2",
+        "#00ffd5",
 
-        "#92f3dd",
-
-        "#ffc2cf"
+        "#ff99aa"
 
     ];
 
@@ -959,51 +637,46 @@ function iniciarFogos() {
 
         for (
             let i = 0;
-            i < 95;
+            i < 80;
             i++
         ) {
 
 
-            const ang =
+            const angulo =
                 Math.random()
                 * Math.PI
                 * 2;
 
 
-            const vel =
-                2
-                + Math.random()
-                * 5.8;
+            const velocidade =
+                Math.random()
+                * 6
+                + 2;
 
 
 
             particulas.push({
 
+
                 x: x,
 
                 y: y,
 
+
                 vx:
-                    Math.cos(ang)
-                    * vel,
+                    Math.cos(angulo)
+                    * velocidade,
+
 
                 vy:
-                    Math.sin(ang)
-                    * vel,
+                    Math.sin(angulo)
+                    * velocidade,
 
-                life: 1,
 
-                decay:
-                    .012
-                    + Math.random()
-                    * .014,
+                vida: 100,
 
-                size:
-                    1.6
-                    + Math.random()
-                    * 2.2,
 
-                color:
+                cor:
                     cores[
                         Math.floor(
                             Math.random()
@@ -1011,15 +684,19 @@ function iniciarFogos() {
                         )
                     ]
 
+
             });
 
+
         }
+
 
     }
 
 
 
-    let disparos = 0;
+    let quantidade =
+        0;
 
 
 
@@ -1029,51 +706,44 @@ function iniciarFogos() {
 
             explosao(
 
-                window.innerWidth
-                * (
-                    .15
-                    + Math.random()
-                    * .7
-                ),
 
-                window.innerHeight
-                * (
-                    .12
-                    + Math.random()
-                    * .5
-                )
+                Math.random()
+                * canvas.width,
+
+
+                Math.random()
+                * canvas.height
+                * 0.65
+
 
             );
 
 
-            disparos++;
+            quantidade++;
 
 
             if (
-                disparos >= 11
+                quantidade >= 10
             ) {
+
 
                 clearInterval(
                     intervalo
                 );
 
+
             }
 
 
-        }, 230);
+        }, 300);
 
 
 
-    const inicio =
-        performance.now();
-
-
-
-    function animar(now) {
+    function animar() {
 
 
         ctx.fillStyle =
-            "rgba(25,0,8,.15)";
+            "rgba(0,0,0,0.15)";
 
 
         ctx.fillRect(
@@ -1082,107 +752,80 @@ function iniciarFogos() {
 
             0,
 
-            window.innerWidth,
+            canvas.width,
 
-            window.innerHeight
+            canvas.height
 
         );
 
 
 
-        for (
-
-            let i =
-                particulas.length - 1;
-
-            i >= 0;
-
-            i--
-
-        ) {
+        particulas.forEach(
+            p => {
 
 
-            const p =
-                particulas[i];
+                p.x += p.vx;
 
 
-            p.x += p.vx;
-
-            p.y += p.vy;
+                p.y += p.vy;
 
 
-            p.vx *= .988;
+                p.vy += 0.04;
 
 
-            p.vy =
-                p.vy * .988
-                + .035;
-
-
-            p.life -=
-                p.decay;
+                p.vida--;
 
 
 
-            ctx.globalAlpha =
-                Math.max(
-                    p.life,
-                    0
+                ctx.globalAlpha =
+                    p.vida / 100;
+
+
+                ctx.fillStyle =
+                    p.cor;
+
+
+                ctx.beginPath();
+
+
+                ctx.arc(
+
+                    p.x,
+
+                    p.y,
+
+                    2.5,
+
+                    0,
+
+                    Math.PI * 2
+
                 );
 
 
-            ctx.fillStyle =
-                p.color;
+                ctx.fill();
 
-
-            ctx.beginPath();
-
-
-            ctx.arc(
-
-                p.x,
-
-                p.y,
-
-                p.size,
-
-                0,
-
-                Math.PI * 2
-
-            );
-
-
-            ctx.fill();
-
-
-
-            if (
-                p.life <= 0
-            ) {
-
-                particulas.splice(
-                    i,
-                    1
-                );
 
             }
-
-        }
-
+        );
 
 
-        ctx.globalAlpha = 1;
+
+        ctx.globalAlpha =
+            1;
 
 
 
         if (
 
-            now - inicio < 5200
+            particulas.some(
+                p =>
+                p.vida > 0
+            )
 
             ||
 
-            particulas.length
+            quantidade < 10
 
         ) {
 
@@ -1192,71 +835,14 @@ function iniciarFogos() {
             );
 
 
-        } else {
-
-
-            canvas.style.display =
-                "none";
-
-
         }
+
 
     }
 
 
-    requestAnimationFrame(
-        animar
-    );
 
-}
-
-
-
-/* =========================
-   CLICOU NO SIM
-========================== */
-
-function sim() {
-
-
-    document
-        .getElementById(
-            "escurecer"
-        )
-        .style.display =
-        "block";
-
-
-    document
-        .getElementById(
-            "celebracao"
-        )
-        .style.display =
-        "flex";
-
-
-    /* SOM */
-
-    tocarSomFogos();
-
-
-    /* ANIMAÇÃO */
-
-    iniciarFogos();
-
-
-
-    /*
-    DEPOIS DE 5,5 SEGUNDOS
-    ABRE A MÚSICA
-    */
-
-    setTimeout(() => {
-
-        location.href =
-        "https://music.youtube.com/watch?v=izGwDsrQ1eQ";
-
-    }, 5500);
+    animar();
 
 
 }
