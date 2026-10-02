@@ -37,14 +37,21 @@
             text-align: center;
         }
 
+
+        /* =========================
+           TÍTULO
+        ========================== */
+
         h2 {
             color: white;
             font-size: 34px;
+
             margin-top: 55px;
             padding: 0 20px;
 
             position: relative;
-            z-index: 20;
+
+            z-index: 30;
 
             text-shadow:
                 0 3px 10px rgba(0,0,0,0.3);
@@ -52,7 +59,7 @@
 
 
         /* =========================
-           IMAGENS
+           IMAGENS DA MORANGUETE
         ========================== */
 
         .foto {
@@ -75,8 +82,11 @@
         }
 
 
+        /* MÉDICA */
+
         #medica {
             left: 25px;
+
             top: 50%;
 
             transform:
@@ -85,8 +95,11 @@
         }
 
 
+        /* ACADEMIA */
+
         #gym {
             right: 25px;
+
             top: 50%;
 
             transform:
@@ -95,8 +108,11 @@
         }
 
 
+        /* CAFÉ */
+
         #cafe {
             left: 50%;
+
             bottom: 15px;
 
             width: 270px;
@@ -107,6 +123,95 @@
                 rotate(-2deg);
 
             z-index: 2;
+        }
+
+
+        /* =========================
+           DENGO PERCORRENDO A TELA
+        ========================== */
+
+        #dengo {
+            position: fixed;
+
+            width: 115px;
+            height: auto;
+
+            left: 2%;
+            top: 3%;
+
+            z-index: 15;
+
+            pointer-events: none;
+
+            filter:
+                drop-shadow(
+                    0 8px 10px rgba(0,0,0,0.28)
+                );
+
+            animation:
+                dengoPasseando
+                12s
+                linear
+                infinite;
+        }
+
+
+        @keyframes dengoPasseando {
+
+            /* SUPERIOR ESQUERDO */
+
+            0% {
+                left: 2%;
+                top: 3%;
+
+                transform:
+                    rotate(-7deg);
+            }
+
+
+            /* SUPERIOR DIREITO */
+
+            25% {
+                left: calc(98% - 115px);
+                top: 3%;
+
+                transform:
+                    rotate(7deg);
+            }
+
+
+            /* INFERIOR DIREITO */
+
+            50% {
+                left: calc(98% - 115px);
+                top: calc(97% - 150px);
+
+                transform:
+                    rotate(-7deg);
+            }
+
+
+            /* INFERIOR ESQUERDO */
+
+            75% {
+                left: 2%;
+                top: calc(97% - 150px);
+
+                transform:
+                    rotate(7deg);
+            }
+
+
+            /* VOLTA AO INÍCIO */
+
+            100% {
+                left: 2%;
+                top: 3%;
+
+                transform:
+                    rotate(-7deg);
+            }
+
         }
 
 
@@ -122,7 +227,7 @@
 
             margin: 55px auto 0;
 
-            z-index: 30;
+            z-index: 40;
         }
 
 
@@ -174,7 +279,7 @@
 
 
         /* =========================
-           FRASES
+           FRASES DO NÃO
         ========================== */
 
         #mensagem {
@@ -216,6 +321,10 @@
         }
 
 
+        /* =========================
+           OVERLAY FINAL
+        ========================== */
+
         #overlay {
             position: fixed;
 
@@ -235,6 +344,10 @@
             pointer-events: none;
         }
 
+
+        /* =========================
+           MENSAGEM FINAL
+        ========================== */
 
         #final {
             position: fixed;
@@ -272,7 +385,9 @@
 
             h2 {
                 font-size: 25px;
+
                 margin-top: 28px;
+
                 padding: 0 18px;
             }
 
@@ -287,12 +402,14 @@
 
             #medica {
                 left: 5px;
+
                 top: 48%;
             }
 
 
             #gym {
                 right: 5px;
+
                 top: 48%;
             }
 
@@ -304,6 +421,64 @@
                 left: 50%;
 
                 bottom: 12px;
+            }
+
+
+            /* DENGO MENOR NO CELULAR */
+
+            #dengo {
+                width: 75px;
+
+                animation-duration: 10s;
+            }
+
+
+            @keyframes dengoPasseando {
+
+                0% {
+                    left: 2%;
+                    top: 2%;
+
+                    transform:
+                        rotate(-7deg);
+                }
+
+
+                25% {
+                    left: calc(98% - 75px);
+                    top: 2%;
+
+                    transform:
+                        rotate(7deg);
+                }
+
+
+                50% {
+                    left: calc(98% - 75px);
+                    top: calc(98% - 100px);
+
+                    transform:
+                        rotate(-7deg);
+                }
+
+
+                75% {
+                    left: 2%;
+                    top: calc(98% - 100px);
+
+                    transform:
+                        rotate(7deg);
+                }
+
+
+                100% {
+                    left: 2%;
+                    top: 2%;
+
+                    transform:
+                        rotate(-7deg);
+                }
+
             }
 
 
@@ -338,6 +513,18 @@
 <div id="conteudo">
 
 
+    <!-- DENGO VOANDO PELA TELA -->
+
+    <img
+        id="dengo"
+        src="dengobanana.png"
+        alt="Dengo"
+    >
+
+
+
+    <!-- MORANGUETE MÉDICA -->
+
     <img
         id="medica"
         class="foto"
@@ -346,6 +533,9 @@
     >
 
 
+
+    <!-- MORANGUETE ACADEMIA -->
+
     <img
         id="gym"
         class="foto"
@@ -353,6 +543,9 @@
         alt="Moranguete academia"
     >
 
+
+
+    <!-- MORANGUETE CAFÉ -->
 
     <img
         id="cafe"
@@ -363,11 +556,15 @@
 
 
 
+    <!-- PERGUNTA -->
+
     <h2>
         Moranguete, aceita sair comigo esse sábado? 🍓❤️
     </h2>
 
 
+
+    <!-- BOTÕES -->
 
     <div class="botoes">
 
@@ -395,6 +592,8 @@
 
 
 
+    <!-- FRASES -->
+
     <p id="mensagem"></p>
 
 
@@ -402,7 +601,10 @@
 
 
 
+<!-- TELA FINAL -->
+
 <div id="overlay"></div>
+
 
 <canvas id="fogos"></canvas>
 
@@ -487,14 +689,16 @@ function desvia(btn) {
 
 
     /*
-       FIXED faz o botão poder viajar
-       pela TELA INTEIRA.
+       FIXED permite que o botão
+       percorra a tela inteira.
     */
 
-    btn.style.position = "fixed";
+    btn.style.position =
+        "fixed";
 
 
-    const margem = 25;
+    const margem =
+        25;
 
 
     const larguraBotao =
@@ -504,11 +708,6 @@ function desvia(btn) {
     const alturaBotao =
         btn.offsetHeight;
 
-
-    /*
-       Limites da tela para impedir
-       que o botão desapareça.
-    */
 
     const maxX =
         window.innerWidth
@@ -532,13 +731,15 @@ function desvia(btn) {
         btn.getBoundingClientRect();
 
 
+    let tentativasPosicao =
+        0;
+
+
+
     /*
-       Procuramos uma posição que esteja
-       suficientemente distante da atual.
+       PROCURA UMA POSIÇÃO DISTANTE
+       DA POSIÇÃO ANTERIOR
     */
-
-    let tentativasPosicao = 0;
-
 
     do {
 
@@ -562,9 +763,11 @@ function desvia(btn) {
 
         Math.hypot(
 
-            novoX - posicaoAtual.left,
+            novoX
+            - posicaoAtual.left,
 
-            novoY - posicaoAtual.top
+            novoY
+            - posicaoAtual.top
 
         ) < 300
 
@@ -593,7 +796,7 @@ function desvia(btn) {
 
 
 
-    /* TROCA A FRASE */
+    /* MUDA A FRASE */
 
     document
         .getElementById("mensagem")
@@ -634,6 +837,11 @@ function sim() {
     iniciarFogos();
 
 
+
+    /*
+       ABRE A MÚSICA
+       APÓS 5 SEGUNDOS
+    */
 
     setTimeout(() => {
 
@@ -681,6 +889,7 @@ function tocarSomFogos() {
             audio.createGain();
 
 
+
         osc.type =
             "sine";
 
@@ -715,6 +924,7 @@ function tocarSomFogos() {
 
         osc.connect(gain);
 
+
         gain.connect(
             audio.destination
         );
@@ -722,11 +932,13 @@ function tocarSomFogos() {
 
         osc.start(tempo);
 
+
         osc.stop(
             tempo + 0.7
         );
 
     }
+
 
 
     boom(0);
@@ -773,7 +985,8 @@ function iniciarFogos() {
         "block";
 
 
-    const particulas = [];
+    const particulas =
+        [];
 
 
     const cores = [
@@ -829,7 +1042,8 @@ function iniciarFogos() {
                     Math.sin(angulo)
                     * velocidade,
 
-                vida: 100,
+                vida:
+                    100,
 
                 cor:
                     cores[
@@ -847,7 +1061,8 @@ function iniciarFogos() {
 
 
 
-    let quantidade = 0;
+    let quantidade =
+        0;
 
 
 
@@ -926,10 +1141,12 @@ function iniciarFogos() {
             p.y += p.vy;
 
 
-            p.vy += 0.04;
+            p.vy +=
+                0.04;
 
 
             p.vida--;
+
 
 
             ctx.globalAlpha =
@@ -978,7 +1195,8 @@ function iniciarFogos() {
 
 
 
-        ctx.globalAlpha = 1;
+        ctx.globalAlpha =
+            1;
 
 
 
@@ -1000,6 +1218,7 @@ function iniciarFogos() {
         }
 
     }
+
 
 
     animar();
